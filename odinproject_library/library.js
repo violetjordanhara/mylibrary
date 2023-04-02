@@ -57,11 +57,15 @@ console.log(myLibrary)
 function bookDisplay(){
     for (let i=0; i<myLibrary.length;i++){
         var table = document.getElementById("books");
-        var row = table.insertRow(0);
+        var row = table.insertRow(-1);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
-        cell1.innerHTML = "NEW CELL1";
-        cell2.innerHTML = "NEW CELL2";
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        cell1.innerHTML = `${myLibrary[i].title}`;
+        cell2.innerHTML = `${myLibrary[i].author}`;
+        cell3.innerHTML = `${myLibrary[i].pages}`;
+        cell4.innerHTML = `${myLibrary[i].read}`;
     }
 }
 bookDisplay();
