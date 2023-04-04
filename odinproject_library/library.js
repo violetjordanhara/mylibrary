@@ -16,7 +16,7 @@ function addBookToLibrary() {
                         document.getElementById('read').value);
     myLibrary.push(addBook);
 
-    console.log(myLibrary)
+    console.log(myLibrary);
     createBookDisplay()
 };
 
@@ -31,7 +31,7 @@ function createBookDisplay(){
 
         let libraryCard = document.createElement('div');
 	    libraryCard.classList.add(`libraryCard`);
-	    libraryCard.setAttribute(`data-deleteIndex`, currentBook.libraryIndex);
+	    libraryCard.setAttribute('data-deleteIndex', currentBook.libraryIndex);
 	    container.appendChild(libraryCard);
 
         let bookTitle = document.createElement('h1');
@@ -51,14 +51,29 @@ function createBookDisplay(){
         libraryCard.appendChild(bookRead)
     
     // add delete button, set attribute to correspond to the library index(i)
-	let bookDeleteButton = document.createElement(`button`);
-	bookDeleteButton.innerHTML = `Delete this book`;
-	bookDeleteButton.id = `deleteBook`;
-	bookDeleteButton.setAttribute(`data-buttonDeleteIndex`, currentBook.libraryIndex);
+	let bookDeleteButton = document.createElement('button');
+	bookDeleteButton.innerHTML = 'Delete this book';
+    bookDeleteButton.id = 'deleteBook';
+	bookDeleteButton.setAttribute('data-buttonDeleteIndex', currentBook.libraryIndex);
 	libraryCard.appendChild(bookDeleteButton);
     }
+
+    let btnDeleteBooks = document.querySelectorAll('deleteBook'); //doesn't work
+    btnDeleteBooks.forEach((button) => {
+	button.addEventListener("click", function(){ 
+        console.log("test")})
+        /*//if attribute of button matches attribute of library card, delete div
+        if (btnDeleteBooks.getAttribute('data-buttonDeleteIndex') === libraryCard.getAttribute('data-deleteIndex')){
+            console.log('test')
+        }})*/;
+      
+     	});
     
-}
+    
+    
+    };
+
+
 createBookDisplay();
 
 
@@ -71,7 +86,10 @@ function makeForm(){
 function manageSubmit(){
     event.preventDefault();
     addBookToLibrary();
-   
+}
+
+function remove(){
+    console.log("to be removed")
 }
 
 /*Add a button on each book’s display to remove the book from the library.
@@ -79,28 +97,5 @@ You will need to associate your DOM elements with the actual book objects in som
 One easy solution is giving them a data-attribute that corresponds to the index of the library array. */
 //create buttons for each row
 
-function resetLibraryDisplay() {
-    for (i = 0; i < myLibrary.length; i++) {
-        let libraryCards = container.querySelectorAll('div');
-    
-        libraryCards.forEach(libraryCard => { 
-			libraryCard.remove();
-    });
-    }
-}
 
 
-function deleteBook(indexToDelete) {
-    let libraryCards = container.querySelectorAll('div');
-    libraryCards.forEach(libraryCard => { 
-		if (indexToDelete === libraryCard.getAttribute(`data-deleteIndex`)) {
-			this.libraryCard.remove();
-		}
-    });
-	
-	resetLibraryDisplay();
-	console.log({myLibrary});
-	myLibrary.splice(indexToDelete, 1);
-	console.log({myLibrary});
-	createBookDisplay();
-}
