@@ -53,21 +53,18 @@ function createBookDisplay(){
     // add delete button, set attribute to correspond to the library index(i)
 	let bookDeleteButton = document.createElement('button');
 	bookDeleteButton.innerHTML = 'Delete this book';
-    bookDeleteButton.id = 'deleteBook';
 	bookDeleteButton.setAttribute('data-buttonDeleteIndex', currentBook.libraryIndex);
 	libraryCard.appendChild(bookDeleteButton);
-    }
 
-    let btnDeleteBooks = document.querySelectorAll('deleteBook'); //doesn't work
-    btnDeleteBooks.forEach((button) => {
-	button.addEventListener("click", function(){ 
-        console.log("test")})
-        /*//if attribute of button matches attribute of library card, delete div
-        if (btnDeleteBooks.getAttribute('data-buttonDeleteIndex') === libraryCard.getAttribute('data-deleteIndex')){
-            console.log('test')
-        }})*/;
-      
-     	});
+    //add event listener to each button that will check if button's attribute == library card's attribute
+    //remove book from DOM and from array
+    bookDeleteButton.addEventListener("click", function(){
+        if (bookDeleteButton.getAttribute('data-buttonDeleteIndex') == libraryCard.getAttribute('data-deleteIndex')) {
+            libraryCard.remove()
+            myLibrary.splice(libraryCard.getAttribute('data-deleteIndex'), 1)
+        }
+    })
+    }
     
     
     
@@ -88,14 +85,7 @@ function manageSubmit(){
     addBookToLibrary();
 }
 
-function remove(){
-    console.log("to be removed")
-}
 
-/*Add a button on each book’s display to remove the book from the library.
-You will need to associate your DOM elements with the actual book objects in some way. 
-One easy solution is giving them a data-attribute that corresponds to the index of the library array. */
-//create buttons for each row
-
-
+/*Add a button on each book’s display to change its read status.
+To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance. */
 
