@@ -6,14 +6,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Library (Odin Project)</title>
 </head>
 <body>
-   <div id="container"></div>
+    <div class="container" id="info"> 
+        <h1>Library</h1>
+        <p>You can add new books to the library by clicking the "NEW BOOK" button</p>
+    </div>
+   <div class="container" id="container"> 
+    </div>
     
   
-
-  <button onclick="makeForm()" id="addform">NEW BOOK</button>
+<div class="container" id="form">
+  <button class="" onclick="makeForm()" id="addform">NEW BOOK</button>
     <form action="" method="post" id="bookForm" style="display:none">
         <h1>New book form</h1>
         <div class="field">
@@ -33,7 +41,7 @@
         </div>
         <div class="field">
             <p>Have you read it?</p>
-            <input type="radio" class="read" name='read' value="read">
+            <input type="radio" class="read" name='read' value="already read">
             <label for="read">I have read it</label>
             <input type="radio" class= 'read' name= 'read' value="not read">
             <label for="read">I have not read it</label>
@@ -41,6 +49,8 @@
         </div>
         <button onclick="manageSubmit()" type="submit">Submit</button>
     </form>
+</div>
+    
     <script src="library.js"></script>
 </body>
 </html>

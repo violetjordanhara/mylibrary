@@ -10,7 +10,6 @@ function Book(title, author, pages, read){
 }
 
 
-
 //take input from form, add new book to myLibrary, add it to the table
 function addBookToLibrary() {
    let addBook = new Book(document.getElementById('title').value, 
@@ -42,11 +41,11 @@ function createBookDisplay(){
 	    libraryCard.appendChild(bookTitle);
 
         let bookAuthor = document.createElement('div')
-        bookAuthor.textContent = currentBook.author;
+        bookAuthor.textContent = `by ${currentBook.author}`;
         libraryCard.appendChild(bookAuthor)
 
         let bookPages = document.createElement('div')
-        bookPages.textContent = currentBook.pages;
+        bookPages.textContent = `This book has ${currentBook.pages} pages`;
         libraryCard.appendChild(bookPages)
 
         //button toggles between read and not read
@@ -55,13 +54,13 @@ function createBookDisplay(){
         libraryCard.appendChild(bookRead)
         bookRead.addEventListener('click', function(event){
             console.log(currentBook.read);
-            if (currentBook.read == "read"){
+            if (currentBook.read == "already read"){
                 console.log("read")
                 currentBook.read = "not read" 
                 bookRead.textContent = currentBook.read;
             } else if (currentBook.read == "not read"){
                 console.log("not read")
-                currentBook.read = "read" 
+                currentBook.read = "already read" 
                 bookRead.textContent = currentBook.read;
             }
         })
@@ -103,5 +102,11 @@ function makeForm(){
 function manageSubmit(){
     event.preventDefault();
     addBookToLibrary();
+    let refreshAuthor = document.getElementById("author");
+    refreshAuthor.value=" ";
+    let refreshTitle = document.getElementById("title");
+    refreshTitle.value=" ";
+    let refreshPages = document.getElementById("pages");
+    refreshPages.value=" ";
 }
 
