@@ -32,8 +32,11 @@
             <small></small>
         </div>
         <div class="field">
-            <label for="read">Have you read it?</label>
-            <input type="text" id="read" name="read" placeholder="Enter yes or no" />
+            <p>Have you read it?</p>
+            <input type="radio" class="read" name='read' value="read">
+            <label for="read">I have read it</label>
+            <input type="radio" class= 'read' name= 'read' value="not read">
+            <label for="read">I have not read it</label>
             <small></small>
         </div>
         <button onclick="manageSubmit()" type="submit">Submit</button>

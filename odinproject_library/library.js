@@ -1,19 +1,22 @@
 let myLibrary = [];
 let container = document.querySelector(`#container`)
 //book constructor
-function Book(title, author, pages, read, libraryIndex){
+function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
     this.libraryIndex = 0
 }
+
+
+
 //take input from form, add new book to myLibrary, add it to the table
 function addBookToLibrary() {
    let addBook = new Book(document.getElementById('title').value, 
                         document.getElementById('author').value,
                         document.getElementById('pages').value,
-                        document.getElementById('read').value);
+                        document.querySelector('input[name="read"]:checked').value);
     myLibrary.push(addBook);
 
     console.log(myLibrary);
@@ -46,15 +49,31 @@ function createBookDisplay(){
         bookPages.textContent = currentBook.pages;
         libraryCard.appendChild(bookPages)
 
-        let bookRead = document.createElement('div')
+        //button toggles between read and not read
+        let bookRead = document.createElement('button')
         bookRead.textContent = currentBook.read;
         libraryCard.appendChild(bookRead)
-    
+        bookRead.addEventListener('click', function(event){
+            console.log(currentBook.read);
+            if (currentBook.read == "read"){
+                console.log("read")
+                currentBook.read = "not read" 
+                bookRead.textContent = currentBook.read;
+            } else if (currentBook.read == "not read"){
+                console.log("not read")
+                currentBook.read = "read" 
+                bookRead.textContent = currentBook.read;
+            }
+        })
+
+        
+
     // add delete button, set attribute to correspond to the library index(i)
 	let bookDeleteButton = document.createElement('button');
 	bookDeleteButton.innerHTML = 'Delete this book';
 	bookDeleteButton.setAttribute('data-buttonDeleteIndex', currentBook.libraryIndex);
 	libraryCard.appendChild(bookDeleteButton);
+
 
     //add event listener to each button that will check if button's attribute == library card's attribute
     //remove book from DOM and from array
@@ -74,6 +93,7 @@ function createBookDisplay(){
 createBookDisplay();
 
 
+
 //function displays the form on clicking the "new book" button
 function makeForm(){
     var x = document.getElementById("bookForm");
@@ -84,8 +104,4 @@ function manageSubmit(){
     event.preventDefault();
     addBookToLibrary();
 }
-
-
-/*Add a button on each book’s display to change its read status.
-To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance. */
 
